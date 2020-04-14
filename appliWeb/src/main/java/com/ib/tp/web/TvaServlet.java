@@ -15,18 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TvaServlet")
 public class TvaServlet extends HttpServlet {
 	
-	private int compteur;
-	
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TvaServlet() {
-        super();
-    }
-    
-    
 
 	@Override
 	public void destroy() {
@@ -41,6 +29,21 @@ public class TvaServlet extends HttpServlet {
 		this.compteur=0;
 		System.out.println("compteur="+compteur);
 	}
+
+
+	private int compteur;
+	
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TvaServlet() {
+        super();
+    }
+    
+    
+
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

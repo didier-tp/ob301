@@ -9,42 +9,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ib.tp.dto.ResTva;
+
 /**
- * Servlet implementation class CalculServlet
+ * Servlet implementation class TvaAjaxJsonServlet
  */
-//@WebServlet("/CalculServlet") //ou bien <servlet>et <servlet-mapping> dans WEB-INF/web.xml
-public class CalculServlet extends HttpServlet {
+@WebServlet("/TvaAjaxJsonServlet")
+public class TvaAjaxJsonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CalculServlet() {
+    public TvaAjaxJsonServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sA = request.getParameter("a");
-		double a = Double.parseDouble(sA);
-		String sB = request.getParameter("b");
-		double b = Double.parseDouble(sB);
-		double res = a * b;
-		response.setContentType("text/html");
+		String sHt = request.getParameter("ht");
+		double ht = Double.parseDouble(sHt);
+		String sTaux = request.getParameter("taux");
+		double taux = Double.parseDouble(sTaux);
+		double tva = ht * taux/100.0;
+		double ttc = tva + ht;
+		ResTva resTva = new ResTva(ht,taux,tva,ttc);
 		PrintWriter out = response.getWriter();
-		out.println("<html><body>");
-		out.println("<p><i>"+res+"</i></p>");
-		out.println("</body></html>");
+		response.setContentType("application/json");
+		//jackson = libraie java open source qui gère le format json
+		ObjectMapper objMapperJackson = new ObjectMapper();
+		String resConAsJsonString = objMapperJackson.writeValueAsString(resTva);
+		out.println(resConAsJsonString);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
