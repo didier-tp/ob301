@@ -29,4 +29,8 @@
 
   </dependencies>
   
+  <build>
+     <finalName>appliWeb</finalName>
+  </build>
+  
 </project>
