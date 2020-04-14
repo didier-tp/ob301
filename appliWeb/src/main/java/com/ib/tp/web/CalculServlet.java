@@ -36,7 +36,7 @@ public class CalculServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
-		out.println("<p><b>"+res+"</b></p>");
+		out.println("<p><i>"+res+"</i></p>");
 		out.println("</body></html>");
 	}
 
