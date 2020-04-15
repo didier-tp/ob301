@@ -8,9 +8,22 @@ import com.ib.tp.entity.Produit;
 public class RechercheProduits {
 	private String categorie; //categorie de produits recherchés
 	private List<Produit> produits;
-   //+get/set 
    //..
 	public void rechercherProduits() {
 		produits = ProduitDaoMemMap.getInstance().findProduitByCategorie(categorie);
 	}
+	public String getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+	public List<Produit> getProduits() {
+		return produits;
+	}
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+	
+	
 }
