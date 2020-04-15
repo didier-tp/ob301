@@ -17,6 +17,7 @@ double tauxMens = (taux/100) / 12;
 double mensualite = montant * tauxMens / ( 1 - Math.pow(1+tauxMens,-nbMois) );
 %>
 <body>
+    <%@ include file="entete.jsp" %>
 	<form >
 	   montant: <input name="montant" value="<%=montant%>"/> <br/>
 	   taux: <input name="taux" value="<%=taux%>"/> <br/>
