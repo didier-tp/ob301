@@ -1,10 +1,10 @@
 emprunt.jsp
 -----------
-montant: 2000
-taux: 0.5
+montant: 2400
+taux: 3
 nbMois : 24
 
-mensualite : 345
+mensualite : 103.1549
 ----
 tauxMens = (taux/100) / 12;
 mensualite = montant * tauxMens / ( 1 - Math.pow(1+tauxMens,-nbMois) );
