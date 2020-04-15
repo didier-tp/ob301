@@ -7,9 +7,9 @@
 <title>res_emprunt_mvc</title>
 </head>
 <body>
-montant : ${requestScope.calculEmprunt.montant} <br/>
-taux : ${requestScope.calculEmprunt.taux} <br/>
-nbMois : ${requestScope.calculEmprunt.nbMois} <br/>
+montant : <%=((com.ib.tp.web.model.CalculEmprunt)request.getAttribute("calculEmprunt")).getMontant()%> <br/>
+taux : ${calculEmprunt.taux} <br/>
+nbMois : ${calculEmprunt.nbMois} <br/>
 mensualite : ${requestScope.calculEmprunt.mensualite} <br/>
 </body>
 </html>
