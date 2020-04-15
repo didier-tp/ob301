@@ -27,5 +27,6 @@ pageContext.setAttribute("resTva", resTva);
 	</form>
 	tva=<b><%=tva %></b><br/>
 	ttc=<b>${resTva.ttc}</b><br/>
+	<%@ include file="piedPage.jsp" %>
 </body>
 </html>

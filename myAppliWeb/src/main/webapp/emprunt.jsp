@@ -25,5 +25,6 @@ double mensualite = montant * tauxMens / ( 1 - Math.pow(1+tauxMens,-nbMois) );
 	   <input type="submit" value="calculer mensualite" /> 
 	</form>
 	mensualite=<b><%=mensualite %></b><br/>
+	<%@ include file="piedPage.jsp" %>
 </body>
 </html>
