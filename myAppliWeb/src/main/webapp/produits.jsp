@@ -22,10 +22,12 @@
      <tr><th>num</th><th>label</th><th>prix</th></tr>
      <%
      List<Produit> produits= (List<Produit>)request.getAttribute("produits");
+     if(produits!=null){
      for(Produit p :produits){
     	 %>
     	 <tr><td><%=p.getNum()%></td><td><%=p.getLabel()%></td><td><%=p.getPrix()%></td></tr>
      <%}
+     }
      %>
      </table>
      
