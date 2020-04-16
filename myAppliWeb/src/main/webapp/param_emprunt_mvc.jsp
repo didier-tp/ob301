@@ -8,11 +8,11 @@
 </head>
 <body>
    <form action="./EmpruntMvcServlet" method="GET">
-	   montant: <input name="montant" value="${requestScope.calculEmprunt.sMontant}" /> <br/>
-	   taux: <input name="taux" value="${requestScope.calculEmprunt.sTaux}"/> <br/>
-	   duree (nbMois): <input name="nbMois" value="${requestScope.calculEmprunt.sNbMois}"/> <br/>
+	   montant: <input name="montant" value="${calculEmprunt.sMontant}" /> <br/>
+	   taux: <input name="taux" value="${calculEmprunt.sTaux}"/> <br/>
+	   duree (nbMois): <input name="nbMois" value="${calculEmprunt.sNbMois}"/> <br/>
 	   <input type="submit" value="calculer mensualite" /> <br/>
-	   ${requestScope.calculEmprunt.message}
+	   ${calculEmprunt.message}
 	</form>
 </body>
 </html>

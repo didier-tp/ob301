@@ -8,8 +8,14 @@ Date d = new Date();
 synchronized(this){
   compteur++;
 }
+String nomEnSession=null;
+try{
+   nomEnSession=(String) session.getAttribute("nom");
+}catch(Exception ex){
+}
+String messageNomEnSession="nomEnSession=" + nomEnSession;
 %>
 <div>
-date=<%=d %> , <%=compteur %>
+date=<%=d %> , <%=compteur %> , <%=nomEnSession %>
 </div>
 <hr/>

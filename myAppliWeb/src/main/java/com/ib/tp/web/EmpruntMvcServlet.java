@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ib.tp.web.model.CalculEmprunt;
 
@@ -46,8 +47,9 @@ public class EmpruntMvcServlet extends HttpServlet {
 			calculEmprunt.setMessage("erreur:"+e.getMessage());
 			page="/param_emprunt_mvc.jsp";
 		}
-		
+		HttpSession session = request.getSession();
 		request.setAttribute("calculEmprunt", calculEmprunt); //stocké un acces au bean dans l'objet request
+		//session.setAttribute("calculEmprunt", calculEmprunt); //stocké un acces au bean dans l'objet session
 		RequestDispatcher rd = this.getServletContext().getRequestDispatcher(page);
         rd.forward(request, response); //redirection vers page jsp
 	}

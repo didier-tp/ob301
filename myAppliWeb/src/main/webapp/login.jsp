@@ -6,13 +6,13 @@
 <meta charset="ISO-8859-1">
 <title>login</title>
 </head>
-<body>
 <%
 String message="";
 String logout = request.getParameter("logout");
 if(logout!=null){
 	session.invalidate();
-	message="deconnexion effectuee";
+	response.sendRedirect("./login.jsp");
+	//message="deconnexion effectuee";
 }else{
 	String username=request.getParameter("username");
 	if(username!=null){
@@ -22,6 +22,8 @@ if(logout!=null){
 	message="nomEnSession=" + nomEnSession;
 }
 %>
+<body>
+     <%@ include file="entete.jsp" %>
      <form>
         username:<input name="username"/><br/>
         password: ...<br/>
