@@ -9,7 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-    <servlet>
+   <servlet>
     <servlet-name>CalculServlet</servlet-name>
     <servlet-class>com.ib.tp.web.CalculServlet</servlet-class>
   </servlet>
@@ -17,4 +17,10 @@
     <servlet-name>CalculServlet</servlet-name>
     <url-pattern>/CalculServlet</url-pattern>
   </servlet-mapping>
+  
+  <session-config>
+     <session-timeout>60</session-timeout> 
+     <!-- session expirant au bout de 60 minute d'inactivité utilisateur --> 
+  </session-config>
+  
 </web-app>

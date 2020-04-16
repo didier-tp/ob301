@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="com.ib.tp.dto.ResTva"
+    import="com.ib.tp.dto.ResTva,java.util.List,java.util.ArrayList"
     %>
 <!DOCTYPE html>
 <html>
@@ -9,6 +9,22 @@
 <title>tva</title>
 </head>
 <%
+List<Double> listeTaux = null;
+synchronized(application){
+   listeTaux = (List<Double>) application.getAttribute("listeTaux");
+   if(listeTaux==null){
+	  System.out.println("simulation acces base de donnees");
+	  listeTaux = new ArrayList<>();
+      listeTaux.add(33.0);listeTaux.add(20.0);listeTaux.add(10.0);listeTaux.add(5.0);
+      //ou bien une recherche (couteuse en temps) dans une base de donnees
+      application.setAttribute("listeTaux", listeTaux);
+      //mettre en cache
+     
+   }else{
+	   System.out.println("valeur récupée en chache dans objet application");
+   }
+}
+
 String sHt = request.getParameter("ht");
 int ht = (sHt==null)?0:Integer.parseInt(sHt);
 String sTaux = request.getParameter("taux");
@@ -22,7 +38,11 @@ pageContext.setAttribute("resTva", resTva);
     <%@ include file="entete.jsp" %>
 	<form >
 	   ht: <input name="ht" value="<%=ht%>"/> <br/>
-	   taux: <input name="taux" value="<%=taux%>"/> <br/>
+	   taux: <select name="taux" >
+	         <%for(Double t : listeTaux) {%>
+	   			<option ><%=t %></option>
+	   			<%} %>
+	         </select> <br/>
 	   <input type="submit" value="calculer tva" /> 
 	</form>
 	tva=<b><%=tva %></b><br/>
