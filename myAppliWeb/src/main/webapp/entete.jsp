@@ -14,8 +14,19 @@ try{
 }catch(Exception ex){
 }
 String messageNomEnSession="nomEnSession=" + nomEnSession;
+Integer compteurGlobal = null;
+synchronized(application){
+	compteurGlobal = (Integer) application.getAttribute("compteurGlobal");
+	if(compteurGlobal==null){
+		compteurGlobal=1; //new Integer(1);
+	}else{
+		compteurGlobal=compteurGlobal+1;
+		              /* =new Integer(compteurGlobal.intValue()+1); */
+	}
+	application.setAttribute("compteurGlobal", compteurGlobal);
+}
 %>
 <div>
-date=<%=d %> , <%=compteur %> , <%=nomEnSession %>
+date=<%=d %> , compteurPage<%=compteur %> , <%=nomEnSession %> , compteurGlobal=<%=compteurGlobal %>
 </div>
 <hr/>
