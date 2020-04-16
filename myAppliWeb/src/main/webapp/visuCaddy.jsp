@@ -9,6 +9,8 @@
 </head>
 <body>
 <%
+String nomEnSession= (String) session.getAttribute("nom");
+String messageNomEnSession="nomEnSession=" + nomEnSession;
 List<String> caddy = (List<String>)session.getAttribute("caddy");
 if(caddy!=null){
 	%>
@@ -20,6 +22,8 @@ if(caddy!=null){
 <%	
 }
 %>
-
+<%=messageNomEnSession%>
+  <hr/>
+  <a href="index.html">retour accueil</a>
 </body>
 </html>

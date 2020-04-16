@@ -21,12 +21,12 @@ if(nomProd!=null){
 }
 %>
 <body>
-		<form>
+		<form action='<%=response.encodeURL("addInCaddy.jsp")%>'>
 		   nomProd: <input name="nomProd" /> <br/>
 		   <input type="submit" value="ajouter au panier" /><br/>
 		</form>
 		<%=message%>
 		<hr/>
-		<a href="visuCaddy.jsp">visuCaddy</a>
+		<a href='<%=response.encodeURL("visuCaddy.jsp")%>' >visuCaddy</a>
 </body>
 </html>
