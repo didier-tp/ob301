@@ -40,7 +40,7 @@ pageContext.setAttribute("resTva", resTva);
 	   ht: <input name="ht" value="<%=ht%>"/> <br/>
 	   taux: <select name="taux" >
 	         <%for(Double t : listeTaux) {%>
-	   			<option ><%=t %></option>
+	   			<option <%if (taux == t) {%> selected<%} %> > <%=t %></option>
 	   			<%} %>
 	         </select> <br/>
 	   <input type="submit" value="calculer tva" /> 
