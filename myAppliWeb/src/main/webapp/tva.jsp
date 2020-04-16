@@ -32,6 +32,7 @@ String sTaux = request.getParameter("taux");
 double taux = (sTaux==null)?0:Double.parseDouble(sTaux);
 pageContext.setAttribute("taux", taux); //pour que taux soit visible plus bas avec syntaxe ${taux} 
 double tva = ht * taux/100.0;
+pageContext.setAttribute("tva", tva);
 double ttc = tva + ht;
 ResTva resTva = new ResTva(ht,taux,tva,ttc);
 pageContext.setAttribute("resTva", resTva);
@@ -59,7 +60,7 @@ pageContext.setAttribute("resTva", resTva);
 	         </select> <br/>
 	   <input type="submit" value="calculer tva" /> 
 	</form>
-	tva=<b><%=tva %></b><br/>
+	tva=<b>${tva}</b><br/>
 	ttc=<b>${resTva.ttc}</b><br/>
 	<%@ include file="piedPage.jsp" %>
 </body>
