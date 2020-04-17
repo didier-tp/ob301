@@ -23,7 +23,7 @@ synchronized(application){
       //mettre en cache
      
    }else{
-	   System.out.println("valeur récupée en chache dans objet application");
+	   System.out.println("valeur récupée en cache dans objet application");
    }
 }
 

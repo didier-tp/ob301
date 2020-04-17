@@ -27,6 +27,6 @@ if(nomProd!=null){
 		</form>
 		<%=message%>
 		<hr/>
-		<a href='<%=response.encodeURL("visuCaddy.jsp")%>' >visuCaddy</a>
+		<a href='<%=response.encodeURL("visuCaddy2.jsp")%>' >visuCaddy</a>
 </body>
 </html>
