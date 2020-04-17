@@ -24,9 +24,10 @@ if(logout!=null){
 %>
 <body>
      <%@ include file="entete.jsp" %>
-     <form>
-        username:<input name="username"/><br/>
-        password: ...<br/>
+     <form   method="POST"
+             action='<%=response.encodeURL("j_security_check") %>'>
+        username:<input name="j_username"/><br/>
+        password:<input name="j_password"/><br/>
         <input type="submit" value="login" />
      </form>
      <hr/>
