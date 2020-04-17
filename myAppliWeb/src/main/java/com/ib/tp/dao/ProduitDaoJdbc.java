@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.ib.tp.entity.Produit;
 
 public class ProduitDaoJdbc implements ProduitDao {
@@ -19,6 +23,24 @@ public class ProduitDaoJdbc implements ProduitDao {
 	public static ProduitDaoJdbc getInstance() {
 		if(uniqueInstance==null) uniqueInstance = new ProduitDaoJdbc();
 		return uniqueInstance;
+	}
+	
+	Connection etablirConnectionViaTomcat() {
+		Connection cn=null;
+		String dbName = "java:comp/env/jdbc/myDB";
+		try {
+			// Nom logique JNDI
+			// Obtention via JNDI de l'objet DataSource:
+			InitialContext ic = new InitialContext();
+			DataSource ds = (DataSource) ic.lookup(dbName);
+			// Récupération de la connexion:
+			cn = ds.getConnection();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cn;
 	}
 	
 	Connection etablirConnection() {
@@ -64,7 +86,7 @@ public class ProduitDaoJdbc implements ProduitDao {
 		List<Produit> listeProd=new ArrayList<>();
 		Connection cn = null;
 		try {
-			cn=this.etablirConnection();
+			cn=this.etablirConnectionViaTomcat();//this.etablirConnection();
 			PreparedStatement pstmt = cn.prepareStatement( "SELECT * FROM Produit WHERE categorie=?");
 			pstmt.setString(1,categorie);//remplacer ? numero 1 par valeur de num
 			ResultSet rs = pstmt.executeQuery();
@@ -89,7 +111,7 @@ public class ProduitDaoJdbc implements ProduitDao {
 		Produit produit=null;
 		Connection cn = null;
 		try {
-			cn=this.etablirConnection();
+			cn=this.etablirConnectionViaTomcat();//this.etablirConnection();
 			PreparedStatement pstmt = cn.prepareStatement( "SELECT * FROM Produit WHERE num=?");
 			pstmt.setLong(1,num);//remplacer ? numero 1 par valeur de num
 			ResultSet rs = pstmt.executeQuery();
