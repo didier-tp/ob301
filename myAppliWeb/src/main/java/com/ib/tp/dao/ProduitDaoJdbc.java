@@ -19,25 +19,31 @@ import com.ib.tp.entity.Produit;
 public class ProduitDaoJdbc implements ProduitDao {
 	
     private static ProduitDaoJdbc uniqueInstance = null;
+    
+    private DataSource ds = null;
 	
 	public static ProduitDaoJdbc getInstance() {
 		if(uniqueInstance==null) uniqueInstance = new ProduitDaoJdbc();
 		return uniqueInstance;
 	}
 	
-	Connection etablirConnectionViaTomcat() {
-		Connection cn=null;
+	public ProduitDaoJdbc() {
 		String dbName = "java:comp/env/jdbc/myDB";
 		try {
 			// Nom logique JNDI
 			// Obtention via JNDI de l'objet DataSource:
 			InitialContext ic = new InitialContext();
-			DataSource ds = (DataSource) ic.lookup(dbName);
-			// Récupération de la connexion:
-			cn = ds.getConnection();
+			this.ds = (DataSource) ic.lookup(dbName);
 		} catch (NamingException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} 
+	}
+	
+	Connection etablirConnectionViaTomcat() {
+		Connection cn=null;
+		try {
+			cn = ds.getConnection();
+		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return cn;
@@ -87,6 +93,7 @@ public class ProduitDaoJdbc implements ProduitDao {
 		Connection cn = null;
 		try {
 			cn=this.etablirConnectionViaTomcat();//this.etablirConnection();
+			//cn.setAutoCommit(true);
 			PreparedStatement pstmt = cn.prepareStatement( "SELECT * FROM Produit WHERE categorie=?");
 			pstmt.setString(1,categorie);//remplacer ? numero 1 par valeur de num
 			ResultSet rs = pstmt.executeQuery();
