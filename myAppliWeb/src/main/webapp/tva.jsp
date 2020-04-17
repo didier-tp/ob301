@@ -3,6 +3,7 @@
     import="com.ib.tp.dto.ResTva,java.util.List,java.util.ArrayList"
     %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,11 +42,11 @@ pageContext.setAttribute("resTva", resTva);
     <%@ include file="entete.jsp" %>
 	<form >
 	   ht: <input name="ht" value="<%=ht%>"/> <br/>
-	   taux (sans jstl): <select >
+	  <!--  taux (sans jstl): <select >
 	         <%for(Double t : listeTaux) {%>
 	   			<option <%if (taux == t) {%> selected<%} %> > <%=t %></option>
 	   			<%} %>
-	         </select> <br/>
+	         </select> <br/> -->
 	   taux (avec jstl): <select name="taux" >
 	         <c:forEach var="t" items="${listeTaux}">
 	           <c:choose>
@@ -60,7 +61,7 @@ pageContext.setAttribute("resTva", resTva);
 	         </select> <br/>
 	   <input type="submit" value="calculer tva" /> 
 	</form>
-	tva=<b>${tva}</b><br/>
+	tva=<b><fmt:formatNumber value="${tva}" pattern=".00"/></b><br/>
 	ttc=<b>${resTva.ttc}</b><br/>
 	<%@ include file="piedPage.jsp" %>
 </body>
