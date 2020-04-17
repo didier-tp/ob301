@@ -24,7 +24,7 @@ public class ProduitDaoJdbc implements ProduitDao {
 	Connection etablirConnection() {
 		Connection cn=null;
 		//valeurs par défaut
-		String driverClassName="jdbc:h2:~/test";
+		String driverClassName="org.h2.Driver";
 		String url="jdbc:h2:~/test";
 		String username="sa";
 		String password="";
