@@ -2,6 +2,7 @@ package com.ib.tp.web.model;
 
 import java.util.List;
 
+import com.ib.tp.dao.ProduitDaoJdbc;
 import com.ib.tp.dao.ProduitDaoMemMap;
 import com.ib.tp.entity.Produit;
 
@@ -10,7 +11,8 @@ public class RechercheProduits {
 	private List<Produit> produits;
    //..
 	public void rechercherProduits() {
-		produits = ProduitDaoMemMap.getInstance().findProduitByCategorie(categorie);
+		//produits = ProduitDaoMemMap.getInstance().findProduitByCategorie(categorie);
+		produits = ProduitDaoJdbc.getInstance().findProduitByCategorie(categorie);
 	}
 	public String getCategorie() {
 		return categorie;
